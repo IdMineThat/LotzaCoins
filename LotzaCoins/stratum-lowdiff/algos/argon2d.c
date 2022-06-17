@@ -73,6 +73,11 @@ void argon2d_dyn_hash(const unsigned char* input, unsigned char* output, unsigne
 	argon2d_dyn_call(input, output);
 }
 
+void argon2d16000_hash(const unsigned char* input, unsigned char* output, unsigned int len)
+{
+	argon2d16000_call(input, output);
+}
+
 void argon2d_uis_hash(const unsigned char* input, unsigned char* output, unsigned int len)
 {
 	uint32_t t_cost = 1; // 1 iteration
