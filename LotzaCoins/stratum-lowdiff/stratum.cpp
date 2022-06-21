@@ -132,7 +132,7 @@ YAAMP_ALGO g_algos[] =
 	{"c11", c11_hash, 1, 0, 0},
 	{"cosa", cosa_hash, 1, 0, 0}, //Cosanta (COSA)
 	{"cpupower", cpupower_hash, 0x10000, 0, 0}, //CPUchain
-	{"curvehash", curve_hash, 1, 0 },
+	{"curvehash", curve_hash, 1, 0 ,0},
 	{"decred", decred_hash, 1, 0 },
 	{"dedal", dedal_hash, 0x100, 0, 0},
 	{"deep", deep_hash, 1, 0, 0},
