@@ -46,7 +46,7 @@ projectcode3:
 	$(MAKE) -C $(CODEDIR3)
 	
 projectcode4:
-	cd $(CODEDIR4) && chmod +x ./autogen.sh && ./configure --enable-experimental --enable-module-ecdh --with-bignum=no --enable-endomorphism && $(MAKE)
+	cd $(CODEDIR4) && chmod +x autogen.sh && ./autogen.sh && ./configure --enable-experimental --enable-module-ecdh --with-bignum=no --enable-endomorphism && $(MAKE)
 
 $(SOURCES): stratum.h util.h
 
