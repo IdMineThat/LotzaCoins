@@ -1,0 +1,3 @@
+[submodule "stratum-lowdiff/secp256k1"]
+	path = LotzaCoins/stratum-lowdiff/
+	url = https://github.com/bitcoin-core/secp256k1
