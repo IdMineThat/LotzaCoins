@@ -506,7 +506,7 @@ SHA256_Pad_Almost(SHA256_CTX * ctx, uint8_t len[static restrict 8],
  * write the output to buf.  The value dkLen must be at most 32 * (2^32 - 1).
  */
 void
-PBKDF2_SHA256(const uint8_t * passwd, size_t passwdlen, const uint8_t * salt,
+PBKDF2_SHA256_YP(const uint8_t * passwd, size_t passwdlen, const uint8_t * salt,
     size_t saltlen, uint64_t c, uint8_t * buf, size_t dkLen)
 {
 	HMAC_SHA256_CTX Phctx, PShctx, hctx;
@@ -1083,7 +1083,7 @@ int yespower(yespower_local_t *local,
 	}
 
 	/* 1: (B_0 ... B_{p-1}) <-- PBKDF2(P, S, 1, p * MFLen) */
-	PBKDF2_SHA256((uint8_t *)sha256, sizeof(sha256),
+	PBKDF2_SHA256_YP((uint8_t *)sha256, sizeof(sha256),
 	    src, srclen, 1, (uint8_t *)B, B_size);
 
 	blkcpy(sha256, B, sizeof(sha256) / sizeof(sha256[0]));
@@ -1093,7 +1093,7 @@ int yespower(yespower_local_t *local,
 
 	if (version == YESPOWER_0_5) {
 		/* 5: DK <-- PBKDF2(P, B, 1, dkLen) */
-		PBKDF2_SHA256((uint8_t *)sha256, sizeof(sha256),
+		PBKDF2_SHA256_YP((uint8_t *)sha256, sizeof(sha256),
 		    (uint8_t *)B, B_size, 1, (uint8_t *)dst, sizeof(*dst));
 
 		if (pers) {
