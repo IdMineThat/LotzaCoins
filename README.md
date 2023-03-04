@@ -35,7 +35,7 @@ Compile the Stratum:
 
     cd LotzaCoins/LotzaCoins/stratum-lowdiff
     git clone https://github.com/bitcoin-core/secp256k1/tree/2ed54da18add295668ec71c91534b640d2cc029b
-    cd stratum-lowdiff/iniparser
+    cd iniparser
     make
     cd ..
     make
