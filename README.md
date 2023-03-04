@@ -9,16 +9,16 @@ If you have any coin stratums running (in this example it's Bitcoin or BTC), you
     stratum.btc start btc
     stratum.btc stop btc
     stratum.btc restart btc
-    
-Make a back up of all your old coin.conf files:
+
+You will probably need to add coin.conf files to make this all work. Start by making a backup of your old coin.conf files:
 
     mkdir /home/yiimp-data/yiimp/site/stratum/oldconfig
     cp /home/yiimp-data/yiimp/site/stratum/config/*.conf /home/yiimp-data/yiimp/site/stratum/oldconfig
 
-Get into one of these .conf files and note the following settings:
+View one of these config files you just copied, and note the following settings (you'll need it later):
 
     [TCP]
-    server = stratum.YourWebsite.com
+    server = YourWebsiteOrAddress
     port = 7268
     password = This_Is_A_Password_That_Either_You_Or_Yiimp_Created
 
@@ -28,11 +28,8 @@ Get into one of these .conf files and note the following settings:
     username = StratumdmOreLettersNStuff
     password = Different_Password_Here
 
-    [STRATUM]
-    algo = x11
-    difficulty = 0.016
-    max_ttf = 40000
 
+Compile the Stratum:
 
     cd LotzaCoins/LotzaCoins/stratum-lowdiff
     git clone https://github.com/bitcoin-core/secp256k1/tree/2ed54da18add295668ec71c91534b640d2cc029b
@@ -41,7 +38,24 @@ Get into one of these .conf files and note the following settings:
     cd ..
     make
 
-    Move stratum file
+Move stratum file
+    
     sudo mv stratum /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff
+
+Copy the new config files into the stratum/config folder. (MAKE SURE YOU'VE BACKED UP YOUR OLD FILES FIRST, see above)
+
+    cd config.sample
+    cp *.conf /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff/config
+    
+    
+Now you can edit the coin.conf files with your actual settings. This is a rad command, it reads through every .conf file, and replaces the text. If you followed the instructions, you should have notes on the stuff you need to change in a previous step. If this isn't really making sense, try opening one of your backed up .conf files and comparing it to the new .conf files. It will help you see where the tu8tu5 lines up to your actual password, etc... If you didn't read the instructions above before running this stuff, you can probably dig most of this data out of the serverconfig.php file.
+
+    cd /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff/config
+    sudo sed -i 's/password = tu8tu5/password = 'This_Is_A_Password_That_Either_You_Or_Yiimp_Created'/g' *.conf
+    sudo sed -i 's/server = yaamp.com/server = 'YourWebsiteOrAddress'/g' *.conf
+    sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
+    sudo sed -i 's/database = yaamp/database = 'DatabaseNameThatYiimpCreated'/g' *.conf
+    sudo sed -i 's/username = root/username = 'StratumdmOreLettersNStuff'/g' *.conf
+    sudo sed -i 's/password = patofpaq/password = 'Different_Password_Here'/g' *.conf
 
 After run addport modify run.sh with stratum_lowdiff
