@@ -5,6 +5,7 @@ Requires a YiiMP Server installation.
 git clone https://github.com/IdMineThat/LotzaCoins.git
 
 If you have any coin stratums running (in this example it's Bitcoin or BTC), you can start|stop|restart them with these commands:
+
     stratum.btc start btc
     stratum.btc stop btc
     stratum.btc restart btc
