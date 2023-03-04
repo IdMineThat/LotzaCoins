@@ -34,7 +34,7 @@ View one of these config files you just copied, and note the following settings 
 Compile the Stratum:
 
     cd LotzaCoins/LotzaCoins/stratum-lowdiff
-    git clone https://github.com/bitcoin-core/secp256k1/tree/2ed54da18add295668ec71c91534b640d2cc029b
+    git clone https://github.com/bitcoin-core/secp256k1.git
     cd iniparser
     make
     cd ..
