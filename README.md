@@ -2,7 +2,9 @@
 Merged A Couple of Repos of Coins for Yiimp
 Requires a YiiMP Server installation.
 
-git clone https://github.com/IdMineThat/LotzaCoins.git
+Download the repository:
+
+    git clone https://github.com/IdMineThat/LotzaCoins.git
 
 If you have any coin stratums running (in this example it's Bitcoin or BTC), you can start|stop|restart them with these commands:
 
