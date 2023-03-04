@@ -11,6 +11,7 @@ If you have any coin stratums running (in this example it's Bitcoin or BTC), you
     stratum.btc restart btc
     
 Make a back up of all your old coin.conf files:
+
     mkdir /home/yiimp-data/yiimp/site/stratum/oldconfig
     cp /home/yiimp-data/yiimp/site/stratum/config/*.conf /home/yiimp-data/yiimp/site/stratum/oldconfig
 
