@@ -47,12 +47,12 @@ Move stratum file
 Copy the new config files into the stratum/config folder. (MAKE SURE YOU'VE BACKED UP YOUR OLD FILES FIRST, see above)
 
     cd config.sample
-    cp *.conf /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff/config
+    cp *.conf /home/yiimp-data/yiimp/site/stratum/config
     
     
 Now you can edit the coin.conf files with your actual settings. This is a rad command, it reads through every .conf file, and replaces the text. If you followed the instructions, you should have notes on the stuff you need to change in a previous step. If this isn't really making sense, try opening one of your backed up .conf files and comparing it to the new .conf files. It will help you see where the tu8tu5 lines up to your actual password, etc... If you didn't read the instructions above before running this stuff, you can probably dig most of this data out of the serverconfig.php file.
 
-    cd /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff/config
+    cd /home/yiimp-data/yiimp/site/stratum/config
     sudo sed -i 's/password = tu8tu5/password = 'This_Is_A_Password_That_Either_You_Or_Yiimp_Created'/g' *.conf
     sudo sed -i 's/server = yaamp.com/server = 'YourWebsiteOrAddress'/g' *.conf
     sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
