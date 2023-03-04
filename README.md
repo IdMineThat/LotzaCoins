@@ -15,6 +15,7 @@ Make a back up of all your old coin.conf files:
     cp /home/yiimp-data/yiimp/site/stratum/config/*.conf /home/yiimp-data/yiimp/site/stratum/oldconfig
 
 Get into one of these .conf files and note the following settings:
+
     [TCP]
     server = stratum.YourWebsite.com
     port = 7268
