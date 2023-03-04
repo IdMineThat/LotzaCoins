@@ -18,7 +18,7 @@ You will probably need to add coin.conf files to make this all work. Start by ma
 View one of these config files you just copied, and note the following settings (you'll need it later):
 
     [TCP]
-    server = YourWebsiteOrAddress
+    server = <b>YourWebsiteOrAddress</b>
     port = 7268
     password = This_Is_A_Password_That_Either_You_Or_Yiimp_Created
 
