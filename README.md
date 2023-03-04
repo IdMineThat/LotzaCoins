@@ -1,6 +1,6 @@
 # LotzaCoins
 Merged A Couple of Repos of Coins for Yiimp
-Requires a YiiMP Server installation.
+Requires YiiMP Server installation. This was built for IdMineThat or DirtyHarryDev Yiimp.
 
 Download the repository:
 
