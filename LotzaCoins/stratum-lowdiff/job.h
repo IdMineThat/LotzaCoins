@@ -66,6 +66,9 @@ struct YAAMP_JOB_TEMPLATE
 	int auxs_size;
 	YAAMP_COIND_AUX *auxs[MAX_AUXS];
 	
+	bool needpriceinfo;
+	char priceinfo[1024];
+	
 	vector<string> BackWhither;
 };
 
