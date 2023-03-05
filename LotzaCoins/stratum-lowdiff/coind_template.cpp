@@ -344,7 +344,13 @@ YAAMP_JOB_TEMPLATE *coind_create_template(YAAMP_COIND *coind)
 			debuglog("claim_hex: %s\n", templ->claim_hex);
 		}
 	}
-
+	else if (strcmp(coind->symbol, "BITC") == 0) {
+		if (strlen(json_get_string(json_result, "priceinfo")) < 1000) {
+			templ->needpriceinfo = json_get_bool(json_result, "needpriceinfo");
+            if (templ->needpriceinfo)
+				strcpy(templ->priceinfo, json_get_string(json_result, "priceinfo"));
+		}
+	}	
 	const char *sc_root = json_get_string(json_result, "stateroot");
 	const char *sc_utxo = json_get_string(json_result, "utxoroot");
 	if (sc_root && sc_utxo) {
