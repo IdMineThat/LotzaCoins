@@ -165,6 +165,8 @@ void coinbase_create(YAAMP_COIND *coind, YAAMP_JOB_TEMPLATE *templ, json_value *
 		coinbase_aux(templ, script2);
 
 	int script_len = strlen(script1)/2 + strlen(script2)/2 + 8;
+	if(!strcmp(g_stratum_algo,"neoscrypt-xaya")) script_len = script_len - 8;
+	
 	sprintf(templ->coinb1, "%s%s01"
 		"0000000000000000000000000000000000000000000000000000000000000000"
 		"ffffffff%02x%s", eversion1, entime, script_len, script1);
@@ -2500,6 +2502,40 @@ void coinbase_create(YAAMP_COIND *coind, YAAMP_JOB_TEMPLATE *templ, json_value *
 //	debuglog("coinbase %s: version %s, nbits %s, time %s\n", coind->symbol, templ->version, templ->nbits, templ->ntime);
 //	debuglog("coinb1 %s\n", templ->coinb1);
 //	debuglog("coinb2 %s\n", templ->coinb2);
+
+    if(!strcmp(g_stratum_algo,"neoscrypt-xaya")) {
+
+        sprintf(templ->xaya_coinbase, "%s%s", templ->coinb1, templ->coinb2);
+
+        int coinbase_len = strlen(templ->xaya_coinbase);
+
+        unsigned char coinbase_bin[1024];
+        memset(coinbase_bin, 0, 1024);
+        binlify(coinbase_bin, templ->xaya_coinbase);
+
+        char doublehash[128];
+        memset(doublehash, 0, 128);
+
+        sha256_double_hash_hex((char *)coinbase_bin, doublehash, coinbase_len/2);
+
+        string merkleroot = merkle_with_first(templ->txsteps, doublehash);
+
+        ser_string_be(merkleroot.c_str(), templ->xaya_merkleroothash, 8);
+
+        char prevhash[128];
+        memset(prevhash, 0, 128);
+
+        string_be(templ->prevhash_hex, prevhash);
+        ser_string_be(prevhash, templ->prevhash_be, 8);
+
+        char xaya_header[1024];
+        memset(xaya_header, 0, 1024);
+
+        sprintf(xaya_header, "%s%s%s%s", templ->version, templ->prevhash_be, templ->xaya_merkleroothash, templ->ntime);
+
+        ser_string_be(xaya_header, templ->xaya_header, 20);
+        strcat(templ->xaya_header, "0000");
+    }
 }
 
 
