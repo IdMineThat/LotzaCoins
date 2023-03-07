@@ -15,8 +15,12 @@ bool client_subscribe(YAAMP_CLIENT *client, json_value *json_params)
 	//if(client_find_my_ip(client->sock->ip)) return false;
 	get_next_extraonce1(client->extranonce1_default);
 
-	client->extranonce2size_default = YAAMP_EXTRANONCE2_SIZE;
-	client->difficulty_actual = g_stratum_difficulty;
+    	if(!strcmp(g_stratum_algo,"neoscrypt-xaya"))
+        	client->extranonce2size_default = 2;
+    	else
+    		client->extranonce2size_default = YAAMP_EXTRANONCE2_SIZE;
+
+    client->difficulty_actual = g_stratum_difficulty;
 
 	strcpy(client->extranonce1, client->extranonce1_default);
 	client->extranonce2size = client->extranonce2size_default;
