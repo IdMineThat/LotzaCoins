@@ -34,7 +34,22 @@ void build_submit_values(YAAMP_JOB_VALUES *submitvalues, YAAMP_JOB_TEMPLATE *tem
 		sprintf(submitvalues->header, "%s%s%s%s%s%s%s", templ->version, templ->prevhash_be, submitvalues->merkleroot_be,
 			templ->claim_be, ntime, templ->nbits, nonce);
 		ser_string_be(submitvalues->header, submitvalues->header_be, 32 + 20);
-	} else {
+	} else if (!strcmp(g_stratum_algo, "neoscrypt-xaya")) {
+ 	    sprintf(submitvalues->xaya_header, "%s%s%s", templ->xaya_header, nonce1, nonce2);
+
+        int xaya_header_len = strlen(submitvalues->xaya_header);
+        binlify(submitvalues->xaya_header_bin, submitvalues->xaya_header);
+        char xaya_merkle[128];
+        memset(xaya_merkle, 0, 128);
+        sha256_double_hash_hex((char *)submitvalues->xaya_header_bin, (char *)xaya_merkle, xaya_header_len/2);
+
+        sprintf(submitvalues->header, "%s%s%s%s%s%s", "20000000",
+                "0000000000000000000000000000000000000000000000000000000000000000", xaya_merkle, ntime, templ->nbits,
+                nonce);
+
+        ser_string_be(submitvalues->header, submitvalues->header_be, 20);
+
+   	 } else {
 		sprintf(submitvalues->header, "%s%s%s%s%s%s", templ->version, templ->prevhash_be, submitvalues->merkleroot_be,
 			ntime, templ->nbits, nonce);
 		ser_string_be(submitvalues->header, submitvalues->header_be, 20);
@@ -255,7 +270,14 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
 			sprintf(count_hex, "fd%02x%02x", templ->txcount & 0xFF, templ->txcount >> 8);
 
 		memset(block_hex, 0, block_size);
-		sprintf(block_hex, "%s%s%s", submitvalues->header_be, count_hex, submitvalues->coinbase);
+		
+        	if(!strcmp(g_stratum_algo, "neoscrypt-xaya")) {
+            		string_be(templ->nbits,&templ->xaya_nbits[0]);
+            		sprintf(block_hex, "%s02%s%s%s%s", submitvalues->xaya_header, templ->xaya_nbits,
+                    		submitvalues->header, count_hex, templ->xaya_coinbase);
+        	} else {
+            		sprintf(block_hex, "%s%s%s", submitvalues->header_be, count_hex, submitvalues->coinbase);
+        	}
 
 		if (g_current_algo->name && !strcmp("jha", g_current_algo->name)) {
 			// block header of 88 bytes
@@ -295,7 +317,11 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
 			//if (g_current_algo->merkle_func)
 			//	merkle_hash = g_current_algo->merkle_func;
 
-			merkle_hash((char *)submitvalues->header_bin, doublehash2, strlen(submitvalues->header_be)/2);
+			if(!strcmp(g_stratum_algo, "neoscrypt-xaya")) {
+                		merkle_hash((char *) submitvalues->xaya_header_bin, doublehash2, strlen(submitvalues->header_be) / 2);
+            		} else {
+                		merkle_hash((char *) submitvalues->header_bin, doublehash2, strlen(submitvalues->header_be) / 2);
+            		}
 
 			char hash1[1024];
 			memset(hash1, 0, 1024);
