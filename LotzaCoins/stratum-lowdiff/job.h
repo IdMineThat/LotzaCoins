@@ -14,6 +14,9 @@ struct YAAMP_JOB_VALUES
 	char header[RES_HEADER_SIZE * 2 +1];
 	char header_be[RES_HEADER_SIZE * 2 +1];		// +1 bcz of `/0`
 	unsigned char header_bin[RES_HEADER_SIZE];	// +1 bcz of `/0`
+		
+    	char xaya_header[1024];
+    	unsigned char xaya_header_bin[1024];
 
 	char hash_hex[1024];
 	char hash_be[1024];
@@ -61,7 +64,12 @@ struct YAAMP_JOB_TEMPLATE
 
 	char header[256];
 
-	bool has_segwit_txs;
+	char xaya_nbits[32];
+    	char xaya_header[1024];
+    	char xaya_coinbase[4*1024];
+    	char xaya_merkleroothash[512];
+
+    	bool has_segwit_txs;
 
 	bool has_filtered_txs;
 	int filtered_txs_fee;
