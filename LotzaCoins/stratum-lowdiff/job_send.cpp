@@ -28,7 +28,13 @@ static void job_mining_notify_buffer(YAAMP_JOB *job, char *buffer)
 			job->id, templ->prevhash_be, templ->extradata_be, templ->coinb1, templ->coinb2,
 			templ->txmerkles, templ->version, templ->nbits, templ->ntime);
 		return;
-	}
+	} else if (!strcmp(g_stratum_algo,"neoscrypt-xaya")) {
+        	sprintf(buffer, "{\"id\":null,\"method\":\"mining.notify\",\"params\":["
+                        "\"%x\",\"%s\",\"%s\",\"%s\",[%s],\"%s\",\"%s\",\"%s\",true]}\n",
+                job->id, "0000000000000000000000000000000000000000000000000000000000000000", templ->xaya_header,
+                "", "", "20000000", templ->nbits, templ->ntime);
+        return;
+    }
 	
     // yespowerRES job
 
