@@ -1,6 +1,6 @@
 [TCP]
 server = yaamp.com
-port = 4233
+port = 4235
 password = tu8tu5
 
 [SQL]
@@ -10,6 +10,6 @@ username = root
 password = patofpaq
 
 [STRATUM]
-algo = neoscrypt
+algo = neoscrypt-xaya
 difficulty = 32
 max_ttf = 400000000
