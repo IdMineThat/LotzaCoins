@@ -44,9 +44,9 @@ Copy New yaamp.php file
 
     Make a backup of the original.
     sudo cp /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.php /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.old
+    
     Move the new file
     sudo cp yaamp.php /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.php
-    sudo mv stratum /home/yiimp-data/yiimp/site/stratum/stratum_lowdiff
 
 Move stratum file
     
