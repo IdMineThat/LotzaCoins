@@ -46,6 +46,7 @@ Copy New yaamp.php file
     sudo cp /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.php /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.old
     
     Move the new file
+    cd ..
     sudo cp yaamp.php /home/yiimp-data/yiimp/site/web/yaamp/core/functions/yaamp.php
 
 Move stratum file
