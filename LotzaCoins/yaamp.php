@@ -60,6 +60,7 @@ function yaamp_get_algos()
 		'minotaurx',
 		'myr-gr',
 		'neoscrypt',
+		'neoscrypt-xaya',
 		'nist5',
 		'penta',
 		'polytimos',
@@ -184,6 +185,7 @@ function yaamp_get_algo_norm($algo)
 		'yespowerARWN'	=> 0.001,
 		'myr-gr'	=> 1.0,
 		'neoscrypt'	=> 1.0,
+		'neoscrypt-xaya'=> 0.001,
 		'nist5'		=> 1.0,
 		'power2b'	=> 0.001,
 		'quark'		=> 1.0,
@@ -338,6 +340,8 @@ function getAlgoColors($algo)
 		'padihash' 	=> '#e2d0d2',
 		'pawelhash' 	=> '#e2d0d2',
 		'equihash'	=> '#006994',
+		'gr'            => '#006994',
+		'neoscrypt-xaya'=> '#809aef',
 
         'MN' => '#ffffff', // MasterNode Earnings
         'PoS' => '#ffffff' // Stake
@@ -395,6 +399,7 @@ function getAlgoPort($algo)
 		'quark'		=> 4033,
 		'whirlpool'	=> 4133,
 		'neoscrypt'	=> 4233,
+		'neoscrypt-xaya'=> 4235,
 		'anime'		=> 4230,
 		'argon2'	=> 4234,
 		'argon2d250'	=> 4238,
