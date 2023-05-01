@@ -250,4 +250,5 @@ void sha3d_hash_hex(const char *input, char *output, unsigned int len);
 #include "algos/cosa.h"
 #include "algos/minotaurx.h"
 #include "algos/sha512_256.h"
+#include "algos/sha3d.h"
 #include "algos/0x10.h"
