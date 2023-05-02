@@ -13,13 +13,13 @@ void sha3d_hash(const char *input, char *output, uint32_t len)
 	uint32_t _ALIGN(64) buffer[16], hash[16];
 	sph_keccak_context ctx_keccak;
 
-	sph_keccak256_init( &ctx_keccak );
-	sph_keccak256 ( &ctx_keccak, input, len );
-	sph_keccak256_close( &ctx_keccak, (void*) buffer );
+	sph_sha3d256_init( &ctx_keccak );
+	sph_sha3d256 ( &ctx_keccak, input, len );
+	sph_sha3d256_close( &ctx_keccak, (void*) buffer );
 
-	sph_keccak256_init( &ctx_keccak );
-	sph_keccak256 ( &ctx_keccak, buffer, 32 );
-	sph_keccak256_close( &ctx_keccak, (void*) hash );
+	sph_sha3d256_init( &ctx_keccak );
+	sph_sha3d256 ( &ctx_keccak, input, len );
+	sph_sha3d256_close( &ctx_keccak, (void*) buffer );
 
 	memcpy(output, hash, 32);
 }
