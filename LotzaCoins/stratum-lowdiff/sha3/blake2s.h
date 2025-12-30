@@ -116,15 +116,16 @@ typedef struct __blake2s_param
 	uint8_t  personal[BLAKE2S_PERSONALBYTES];  // 32
 } blake2s_param;
 
-ALIGN( 64 ) typedef struct __blake2s_state
-{
-	uint32_t h[8];
-	uint32_t t[2];
-	uint32_t f[2];
-	uint8_t  buf[2 * BLAKE2S_BLOCKBYTES];
-	size_t   buflen;
-	uint8_t  last_node;
-} blake2s_state;
+struct ALIGN(64) __blake2s_state {
+    uint32_t h[8];
+    uint32_t t[2];
+    uint32_t f[2];
+    uint8_t  buf[2 * BLAKE2S_BLOCKBYTES];
+    size_t   buflen;
+    uint8_t  last_node;
+};
+
+typedef struct __blake2s_state blake2s_state;
 #pragma pack(pop)
 
 #if defined(__cplusplus)
@@ -152,3 +153,4 @@ extern "C" {
 #endif
 
 #endif
+
